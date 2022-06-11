@@ -2,13 +2,22 @@ vars:
   api-version: /api/v1
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/fluffybest?useSSL=false&useUnicode=yes&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
     username: fluffybestapp
     password: fluffybestapp
   jpa:
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
+        dialect: org.hibernate.spatial.dialect.postgis.PostgisDialect
+        hbm2ddl:
+          charset_name: UTF-8
   flyway:
     enabled: false
+logging:
+  level:
+    ### log just the SQL
+    org.hibernate.SQL: DEBUG
+    ### log JDBC bind parameters
+    org.hibernate.type: TRACE
+    org.hibernate.type.descriptor.sql: TRACE
