@@ -1,5 +1,6 @@
 vars:
-  api-version: /api/v1
+  api:
+    version-url: /api/v1
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
@@ -10,10 +11,15 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.spatial.dialect.postgis.PostgisDialect
+        default_schema: fluffybestapp
         hbm2ddl:
           charset_name: UTF-8
   flyway:
-    enabled: false
+    enabled: true
+    schemas: fluffybestapp
+    default-schema: fluffybestapp
+    placeholders:
+      mySchema: fluffybestapp
 logging:
   level:
     ### log just the SQL

@@ -1,3 +1,4 @@
+-- DANGER: this script creates a superuser.
 CREATE USER fluffybestapp WITH PASSWORD 'fluffybestapp'
 	SUPERUSER
 	CREATEDB
