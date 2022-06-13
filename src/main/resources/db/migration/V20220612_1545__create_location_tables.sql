@@ -1,9 +1,9 @@
 -- MIT License
 -- Copyright (c) 2022 - present Alexander Kuznetsov alkuznetsov@aol.com
--- -------------------------
+-- ---
 
 -- Create location-related tables
--- ---------------------
+-- ---
 CREATE TABLE ${mySchema}.country
 (
     id bigint PRIMARY KEY DEFAULT nextval('global_id_sequence'),

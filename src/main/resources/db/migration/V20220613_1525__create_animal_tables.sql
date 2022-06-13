@@ -1,12 +1,12 @@
 -- MIT License
 -- Copyright (c) 2022 - present Alexander Kuznetsov alkuznetsov@aol.com
--- -------------------------
+-- ---
 
 -- Domain tables
--- --------------
+-- ---
 
--- Animal description
--- -------------------
+-- Create animal-related tables
+-- ---
 
 CREATE TABLE ${mySchema}.animal_type
 (
