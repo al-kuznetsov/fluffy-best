@@ -8,14 +8,14 @@
 -- Create animal-related tables
 -- ---
 
-CREATE TABLE ${mySchema}.animal_type
+CREATE TABLE animal_type
 (
     id bigint PRIMARY KEY DEFAULT nextval('global_id_sequence'),
     name varchar(512) NOT NULL,
     image_url varchar(512) NULL DEFAULT NULL
 );
 
-CREATE TABLE ${mySchema}.breed
+CREATE TABLE breed
 (
     id bigint PRIMARY KEY DEFAULT nextval('global_id_sequence'),
     name varchar(512) NOT NULL,
@@ -30,14 +30,14 @@ CREATE TABLE ${mySchema}.breed
 );
 
 -- E.g.: has a guardian, in shelter, stray, wild, duty, etc.
-CREATE TABLE ${mySchema}.animal_status
+CREATE TABLE animal_status
 (
     id integer PRIMARY KEY DEFAULT nextval('global_id_sequence'),
     name varchar(255) NOT NULL
 );
 
 -- The criteria to consider when helping decision making
-CREATE TABLE ${mySchema}.animal_criteria
+CREATE TABLE animal_criteria
 (
     id integer PRIMARY KEY DEFAULT nextval('global_id_sequence'),
     stressed boolean NOT NULL DEFAULT false,
@@ -46,7 +46,7 @@ CREATE TABLE ${mySchema}.animal_criteria
     mobile boolean NOT NULL DEFAULT false
 );
 
-CREATE TABLE ${mySchema}.animal
+CREATE TABLE animal
 (
     id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
     name varchar(512) NULL DEFAULT NULL,
@@ -67,14 +67,14 @@ CREATE TABLE ${mySchema}.animal
     CONSTRAINT fk_animal_criteria FOREIGN KEY (criteria_id) REFERENCES animal_criteria (id)
 );
 
-CREATE TABLE ${mySchema}.animal_spot
+CREATE TABLE animal_spot
 (
     animal_id uuid NOT NULL,
     spot_id uuid NOT NULL,
     PRIMARY KEY (animal_id, spot_id)
 );
 
-CREATE TABLE ${mySchema}.animal_address
+CREATE TABLE animal_address
 (
     animal_id uuid NOT NULL,
     address_id uuid NOT NULL,

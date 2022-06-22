@@ -18,8 +18,6 @@ spring:
     enabled: true
     schemas: fluffybestapp
     default-schema: fluffybestapp
-    placeholders:
-      mySchema: fluffybestapp
 logging:
   charset:
     console: UTF-8

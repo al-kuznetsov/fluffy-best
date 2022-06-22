@@ -4,7 +4,7 @@
 
 -- Create location-related tables
 -- ---
-CREATE TABLE ${mySchema}.country
+CREATE TABLE country
 (
     id bigint PRIMARY KEY DEFAULT nextval('global_id_sequence'),
     alpha_two_code varchar(2) NOT NULL, -- ISO 3166-1 alpha-2 codes
@@ -14,7 +14,7 @@ CREATE TABLE ${mySchema}.country
 
 -- The first-level Administrative division type
 -- Example: state in the USA, oblast in Russia, etc.
-CREATE TABLE ${mySchema}.region_type
+CREATE TABLE region_type
 (
     id bigint PRIMARY KEY DEFAULT nextval('global_id_sequence'),
     name varchar(512) NOT NULL
@@ -23,7 +23,7 @@ CREATE TABLE ${mySchema}.region_type
 -- The region in which the locality is, and which is in the country (first-level Administrative division).
 -- For example, California or another appropriate first-level Administrative division
 -- see https://en.wikipedia.org/wiki/List_of_administrative_divisions_by_country
-CREATE TABLE ${mySchema}.region
+CREATE TABLE region
 (
     id bigint PRIMARY KEY DEFAULT nextval('global_id_sequence'),
     name varchar(512),
@@ -32,14 +32,14 @@ CREATE TABLE ${mySchema}.region
 );
 
 -- The locality type example: town, city, etc.
-CREATE TABLE ${mySchema}.locality_type
+CREATE TABLE locality_type
 (
     id bigint PRIMARY KEY DEFAULT nextval('global_id_sequence'),
     name varchar(255) NOT NULL
 );
 
 -- The locality in which the street address is, and which is in the region. For example, Mountain View.
-CREATE TABLE ${mySchema}.locality
+CREATE TABLE locality
 (
     id bigint PRIMARY KEY DEFAULT nextval('global_id_sequence'),
     name varchar(512) NOT NULL,
@@ -50,14 +50,14 @@ CREATE TABLE ${mySchema}.locality
 );
 
 -- E.g.: postal address, billing address, delivery address, etc.
-CREATE TABLE ${mySchema}.address_type
+CREATE TABLE address_type
 (
     id bigint PRIMARY KEY DEFAULT nextval('global_id_sequence'),
     name varchar(128) NOT NULL
 );
 
 -- Follows recommendations on https://schema.org/PostalAddress
-CREATE TABLE ${mySchema}.address
+CREATE TABLE address
 (
     id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
     address_type_id bigint NOT NULL, -- TODO fill in with viable default?
@@ -77,7 +77,7 @@ CREATE TABLE ${mySchema}.address
 
 -- Follows recommendations on https://schema.org/GeoCoordinates guidelines
 -- Note: This table is currently not used
-CREATE TABLE ${mySchema}.geo_coordinate
+CREATE TABLE geo_coordinate
 (
     id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
     address_id uuid NULL DEFAULT NULL, -- For handling coordinates of a certain address
@@ -90,7 +90,7 @@ CREATE TABLE ${mySchema}.geo_coordinate
 );
 
 -- Uses PostGIS geometry support to store places
-CREATE TABLE ${mySchema}.spot
+CREATE TABLE spot
 (
     id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
     spot geometry NOT NULL
